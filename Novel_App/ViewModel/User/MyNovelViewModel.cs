@@ -23,7 +23,7 @@ namespace Novel_App.ViewModel.User
     {
         public ObservableCollection<Novel> All { get; set; }
         public ObservableCollection<Novel> NovelList { get; set; }
-        public ObservableCollection<String> Genrename { get; set; }
+        //public ObservableCollection<String> Genrename { get; set; }
 
 
 
@@ -43,7 +43,6 @@ namespace Novel_App.ViewModel.User
             UpdateCommand = new RelayCommand(Update);
             DeleteCommand = new RelayCommand(Delete);
             SearchCommand = new RelayCommand(Search);
-            ViewChapterCommand = new RelayCommand(ViewChapter);
             ViewDetailCommand = new RelayCommand(ViewDetail);
             ClearCommand = new RelayCommand(Clear);
         }
@@ -125,12 +124,12 @@ namespace Novel_App.ViewModel.User
             OnPropertyChanged(nameof(NovelList));
         }
 
-        private void ViewChapter(object obj)
-        {
-            if (selecteditem != null)
-            {
-            }
-        }
+        //private void ViewChapter(object obj)
+        //{
+        //    if (selecteditem != null)
+        //    {
+        //    }
+        //}
 
         private Boolean _isListVisible;
         public Boolean IsListVisible
@@ -167,7 +166,7 @@ namespace Novel_App.ViewModel.User
             {
                 var list = context.Genres.ToList();
                 GenreList = new ObservableCollection<Genre>(list);
-                Genrename = new ObservableCollection<String>(list.Select(g => g.GenreName).ToList());
+                //Genrename = new ObservableCollection<String>(list.Select(g => g.GenreName).ToList());
             }
             textboxitem = new Novel();
             OnPropertyChanged(nameof(textboxitem));
