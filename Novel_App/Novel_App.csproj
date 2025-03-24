@@ -37,9 +37,7 @@
     <Resource Include="Images\user2.png" />
 
     <Folder Include="ViewModel\Adminn\" />
-    <Folder Include="ViewModel\Staff\" />
     <Folder Include="View\Admin\" />
-    <Folder Include="View\Staff\" />
 
   </ItemGroup>
 
