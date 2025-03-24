@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Novel_App.View.User.MyChapter;
+using Novel_App.ViewModel;
+using Novel_App.ViewModel.User;
 
 namespace Novel_App.View.User
 {
@@ -23,6 +25,7 @@ namespace Novel_App.View.User
         public UserHomePageView()
         {
             InitializeComponent();
+            DataContext = new HomepageViewModel();
             FrMain.Content = new NovelsView();
         }
 

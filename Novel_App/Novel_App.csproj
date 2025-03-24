@@ -35,8 +35,6 @@
     <Resource Include="Images\padlock.png" />
     <Resource Include="Images\user.png" />
     <Resource Include="Images\user2.png" />
-
-    <Folder Include="ViewModel\Adminn\" />
     <Folder Include="View\Admin\" />
 
   </ItemGroup>
