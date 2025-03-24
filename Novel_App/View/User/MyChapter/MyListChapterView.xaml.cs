@@ -23,10 +23,11 @@ namespace Novel_App.View.User.MyChapter
     /// </summary>
     public partial class MyListChapterView : Page
     {
-        public Chapter SelectedChapter { get; set; }
+        public Chapter SelectedChapter;
         public MyListChapterView(int novelId)
         {
             InitializeComponent();
+           
             int userID = UserSession.Instance.Account.UserId;
             int novelID = novelId;
             DataContext = new MychapterViewModel(userID, novelID);
@@ -35,7 +36,15 @@ namespace Novel_App.View.User.MyChapter
 
         private void AddChapter_Click(object sender, RoutedEventArgs e)
         {
-            SelectedChapter = (Chapter)listView_Chapters.SelectedItem;
+            
+            var viewModel = DataContext as MychapterViewModel;
+            if (viewModel == null)
+            {
+                MessageBox.Show("Error: ViewModel is not initialized.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            SelectedChapter = viewModel.SelectedChapter; 
 
             if (SelectedChapter == null)
             {
@@ -43,27 +52,34 @@ namespace Novel_App.View.User.MyChapter
                 return;
             }
 
-          
-            int userID = UserSession.Instance.Account.UserId; // Lấy userID từ nguồn phù hợp, nếu có hệ thống đăng nhập, lấy từ UserSession
+            int userID = UserSession.Instance.Account.UserId; // Lấy userID từ UserSession
             NavigationService?.Navigate(new MychapterView(SelectedChapter.Novel.NovelId, SelectedChapter.Novel.NovelName, userID));
-            
         }
+
 
 
 
         private void UpdateChapter_Click(object sender, RoutedEventArgs e)
         {
-            SelectedChapter = (Chapter)listView_Chapters.SelectedItem;
-
-            if (SelectedChapter == null)
+            
+            var viewModel = DataContext as MychapterViewModel;
+            if (viewModel == null)
             {
-                MessageBox.Show("Please select a chapter before adding!", "Notification", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Error: ViewModel is not initialized.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-           
-            int userID = UserSession.Instance.Account.UserId; // Lấy userID từ nguồn phù hợp, nếu có hệ thống đăng nhập, lấy từ UserSession
+            SelectedChapter = viewModel.SelectedChapter; 
+
+            if (SelectedChapter == null)
+            {
+                MessageBox.Show("Please select a chapter before updating!", "Notification", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            int userID = UserSession.Instance.Account.UserId; // Lấy userID từ UserSession
             NavigationService?.Navigate(new UpdateMyChapterView(SelectedChapter.ChapterId, SelectedChapter.Novel.NovelId, SelectedChapter.Novel.NovelName, userID));
         }
+
     }
 }
